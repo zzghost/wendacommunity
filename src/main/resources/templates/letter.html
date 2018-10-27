@@ -1,0 +1,60 @@
+<#include "header.html">
+<link rel="stylesheet" href="../styles/letter.css">
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+    <div class="zg-wrap">
+        <div class="zu-global-nitify-inner">
+            <a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+            <span class="zu-global-notify-icon"></span>
+            <span class="zu-global-notify-msg"></span>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class="zg-wrap zu-main clearfix ">
+        <#if conversations ??>
+        <#list conversations as cvs>
+        <ul class="letter-list">
+            <li id="conversation-item-10005_622873">
+                <a class="letter-link" href="/msg/detail?conversationId=${(cvs.message.conversationId)?string}"></a>
+                <div class="letter-info">
+                    <span class="l-time">${(cvs.message.createdDate)?string("yyyy-MM-dd HH:mm:ss")}</span>
+                    <div class="l-operate-bar">
+                        <!--<a href="javascript:void(0);" class="sns-action-del" data-id="10005_622873">
+                            删除
+                        </a>-->
+                        <a href="/msg/detail?conversationId=${(cvs.message.conversationId)?string}">
+                            共${cvs.message.id}条会话
+                        </a>
+                    </div>
+                </div>
+                <div class="chat-headbox">
+                        <span class="msg-num">
+                            ${cvs.unread}
+                        </span>
+                    <a class="list-head">
+                        <img alt="头像" src="${cvs.user.headUrl}">
+                    </a>
+                </div>
+                <div class="letter-detail">
+                    <a title="名字" class="letter-name level-color-1">
+                        ${cvs.user.name}
+                    </a>
+                    <p class="letter-brief">
+                        <a href="/msg/detail?conversationId=${(cvs.message.conversationId)?string}">
+                            ${cvs.message.content}
+                        </a>
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+        </#list>
+        <#else>
+            <br>暂时没有私信!
+        </#if>
+    </div>
+</div>
+<#include "js.html">
+<script type="text/javascript" src="/scripts/main/site/profile.js"></script>
+<#include "footer.html">
